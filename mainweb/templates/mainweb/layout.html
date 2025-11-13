@@ -1,0 +1,46 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}"Секция спортивной борьбы "Сибирский борец""{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/d80a996d04.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'mainweb/css/mainweb.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+
+    <aside>
+        <img src="{% static 'mainweb/img/side_bar_main_logo.png' %}" alt="Логотип" class="logo-img">
+
+        <span class="logo">
+            <img src="{% static 'mainweb/img/main_image.png' %}" alt="Главный_Логотип" class="logo-main-img">
+        </span>
+
+        <ul>
+            <li><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Главная</a></li>
+            <li><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i>О нас</a></li>
+            <li><a href="{% url 'schedule' %}"><i class="fa-solid fa-calendar-days"></i>Расписание</a></li>
+
+            <li><a href="{% url 'trainers' %}"><i class="fa-solid fa-trophy"></i>Тренеры</a></li>
+            <li><a href="{% url 'reviews' %}"><i class="fa-solid fa-comment-dots"></i>Отзывы</a></li>
+            <li><a href="{% url 'appointment' %}"><i class="fa-solid fa-calendar-check"></i>Запись</a></li>
+            <li><a href="{% url 'contacts' %}"><i class="fa-solid fa-phone"></i>Контакты</a></li>
+            <li><a href="{% url 'news' %}"><i class="fa-solid fa-globe"></i>Новости</a></li>
+            <li><a href="{% url 'faq' %}"><i class="fa-solid fa-circle-question"></i>FAQ</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="page-overlay">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% extends 'mainweb/layout.html' %}
+
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+<main>
+    <section class="schedule">
+        <h1>«Сибирский борец» предлагает занятия в следующих группах:</h1>
+
+        <!-- Греко-римская борьба -->
+        <div class="group-category">
+            <h2>Греко-римская борьба</h2>
+            <div class="grid-container">
+                <div class="group-card age-7-9">
+                    <div class="icon">🤼‍♂️</div>
+                    <h3>7-9 лет (г.Барнаул, ул.Власихинская, 89)</h3>
+                    <p><strong>Расписание:</strong> Вт, Чт - 13:00 | Сб - 11:00</p>
+                </div>
+                <div class="group-card age-10-14">
+                    <div class="icon">🤼‍♂️</div>
+                    <h3>10-14 лет (г.Барнаул, ул.Власихинская, 89)</h3>
+                    <p><strong>Расписание:</strong> Вт, Ср, Чт - 10:45 / 14:30 | Сб - 13:00</p>
+                </div>
+                <div class="group-card age-7-9">
+                    <div class="icon">🤼‍♂️</div>
+                    <h3>7-9 лет (г.Барнаул, ул.Взлетная, 2В)</h3>
+                    <p><strong>Расписание:</strong> Вт, Чт - 14:30 | Сб - 12:00</p>
+                </div>
+                <div class="group-card age-10-14">
+                    <div class="icon">🤼‍♂️</div>
+                    <h3>10-14 лет (г.Барнаул, ул.Взлетная, 2В)</h3>
+                    <p><strong>Расписание:</strong> Вт, Ср, Чт - 9:00 / 16:00 | Сб - 13:00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Общая физическая подготовка (ОФП) -->
+        <div class="group-category">
+            <h2>ОФП</h2>
+            <div class="grid-container">
+                <div class="group-card age-4-6">
+                    <div class="icon">🏃‍♂️</div>
+                    <h3>4-6 лет (г.Барнаул, ул.Власихинская, 89 / 166)</h3>
+                    <p><strong>Расписание:</strong> Ср, Пт - 18:00 (тц Заря) | Сб - 10:00 | Вс - 11:00 (бк Кросс)</p>
+                </div>
+                <div class="group-card age-7-14">
+                    <div class="icon">🏃‍♂️</div>
+                    <h3>7-14 лет (г.Барнаул, ул.Власихинская, 89 / 166)</h3>
+                    <p><strong>Расписание:</strong> Ср, Пт - 19:00 (тц Заря) | Вс - 12:00 (бк Кросс)</p>
+                </div>
+                <div class="group-card age-4-6">
+                    <div class="icon">🏃‍♂️</div>
+                    <h3>4-6 лет (г.Барнаул, ул.Взлетная, 2Е)</h3>
+                    <p><strong>Расписание:</strong> Вт, Чт - 19:00 | Сб - 17:00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CrossFit -->
+        <div class="group-category">
+            <h2>CrossFit</h2>
+            <div class="grid-container">
+                <div class="group-card age-7-14">
+                    <div class="icon">🏋️‍♀️</div>
+                    <h3>(г. Барнаул, ул.Власихинская, 89 / 166)</h3>
+                    <p><strong>Расписание:</strong> Ср, Пт - 20:00 | Вс - 14:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+.schedule {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.group-category {
+    margin-bottom: 40px;
+}
+.group-category h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.group-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.group-card .icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.group-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.2em;
+}
+.group-card p {
+    margin: 0;
+    font-size: 0.95em;
+}
+
+/* Цветовая дифференциация по возрасту */
+.age-4-6 { border-left: 5px solid #FFB347; }
+.age-7-9 { border-left: 5px solid #FF6961; }
+.age-10-14 { border-left: 5px solid #61B2FF; }
+.age-7-14 { border-left: 5px solid #9B59B6; }
+</style>
+{% endblock %}

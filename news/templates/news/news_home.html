@@ -1,0 +1,177 @@
+{% extends 'mainweb/layout.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<div class="news-container">
+    <h1 class="news-title">Новости секции</h1>
+
+    {% for item in news %}
+    <div class="news-card">
+        <div class="news-header">
+            <h2 class="news-item-title">{{ item.title }}</h2>
+            <span class="news-date">{{ item.created_at|date:"d.m.Y" }}</span>
+        </div>
+
+        {% if item.content %}
+        <div class="news-content">
+            <p>{{ item.content|linebreaks }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Галерея изображений -->
+        {% if item.images.all %}
+        <div class="news-gallery">
+
+            <div class="gallery-grid">
+                {% for image in item.images.all %}
+                <div class="gallery-item">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption|default:item.title }}">
+                    {% if image.caption %}
+                    <p class="image-caption">{{ image.caption }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if item.video %}
+        <div class="news-video">
+            <h3>Видео</h3>
+            <video controls class="news-video-player">
+                <source src="{{ item.video.url }}">
+                Ваш браузер не поддерживает видео
+            </video>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <div class="no-news">
+        <p>Пока нет новостей. Следите за обновлениями!</p>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+.news-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.news-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.news-item-title {
+    color: #2c3e50;
+    margin: 0;
+    flex: 1;
+}
+
+.news-date {
+    background: #3498db;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.news-content {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.news-gallery {
+    margin: 20px 0;
+}
+
+.news-gallery h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.image-caption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.news-video {
+    margin: 20px 0;
+}
+
+.news-video h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.news-video-player {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.no-news {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .news-header {
+        flex-direction: column;
+    }
+
+    .news-date {
+        margin-top: 10px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
