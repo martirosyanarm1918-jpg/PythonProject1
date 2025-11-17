@@ -141,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Настройки для продакшена
 if 'RENDER' in os.environ:
-    DEBUG = False
+    DEBUG = True
 
     ALLOWED_HOSTS = ['.onrender.com', '127.0.0.1', 'localhost']
 
