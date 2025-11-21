@@ -60,16 +60,23 @@ aside.mobile-open {
     position: fixed;
     top: 20px;
     left: 20px;
-    background: rgba(255,255,255,0.2);
-    border: none;
+    background: rgba(220, 220, 220, 0.8); /* Светлый серебристый */
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
-    color: white;
+    color: #333; /* Темный текст для контраста */
     font-size: 24px;
-    padding: 10px;
+    padding: 12px 15px;
     cursor: pointer;
     z-index: 1001;
     backdrop-filter: blur(10px);
     display: block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(220, 220, 220, 0.9);
+    transform: scale(1.05);
 }
 
 /* -------------------- Логотип -------------------- */
@@ -274,5 +281,12 @@ main {
     
     aside .logo-img {
         max-width: 150px;
+    }
+    
+    .mobile-menu-toggle {
+        top: 15px;
+        left: 15px;
+        padding: 10px 12px;
+        font-size: 20px;
     }
 }
