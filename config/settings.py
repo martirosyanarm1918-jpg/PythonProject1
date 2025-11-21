@@ -27,7 +27,12 @@ SECRET_KEY = 'l!+TI{rV7IwSa)Oh9#[PFI/cAe#Y$+>\\Yuv;3[36S1FW$h<lP;'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'pythonproject1-1inp.onrender.com',
+    '.onrender.com',  # все поддомены render.com
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
