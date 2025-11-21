@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     '.onrender.com',  # все поддомены render.com
     'localhost',
     '127.0.0.1',
+    '*'
 ]
 
 
@@ -146,9 +147,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Настройки для продакшена
 if 'RENDER' in os.environ:
-    DEBUG = True
+    DEBUG = False  # Измените на False для продакшена
 
-    ALLOWED_HOSTS = ['.onrender.com', '127.0.0.1', 'localhost']
+    # Добавьте ваш конкретный домен
+    ALLOWED_HOSTS = [
+        'pythonproject1-1inp.onrender.com',
+        '.onrender.com',
+        'localhost',
+        '127.0.0.1'
+    ]
 
     # База данных для Render
     DATABASES = {
@@ -161,7 +168,7 @@ if 'RENDER' in os.environ:
     # WhiteNoise для статических файлов
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    # Безопасность для HTTPS
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    # ВРЕМЕННО отключите HTTPS редиректы для теста
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
