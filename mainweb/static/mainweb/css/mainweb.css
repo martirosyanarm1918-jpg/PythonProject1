@@ -1,10 +1,20 @@
 /* -------------------- Шрифты -------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
+/* -------------------- Базовые стили (Mobile First) -------------------- */
+:root {
+    --sidebar-width: 250px;
+    --mobile-breakpoint: 768px;
+    --tablet-breakpoint: 1024px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    height: 100vh;
-    display: flex;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #141E30);
     background-size: 400% 400%;
@@ -18,27 +28,48 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* -------------------- Сайдбар -------------------- */
+/* -------------------- Сайдбар (мобильная версия) -------------------- */
 aside {
     position: fixed;
     top: 0;
-    left: 0;
+    left: -100%;
     bottom: 0;
-    width: 250px;
+    width: 280px;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     color: #fff;
-    box-sizing: border-box;
-    overflow-y: auto;
+    background: linear-gradient(180deg, rgba(15,32,39,0.95) 0%, rgba(44,83,100,0.9) 100%);
+    backdrop-filter: blur(10px);
     border-right: 2px solid rgba(255,255,255,0.2);
     border-radius: 0 16px 16px 0;
-    background: linear-gradient(180deg, rgba(15,32,39,0.9) 0%, rgba(44,83,100,0.85) 100%);
-    backdrop-filter: blur(10px);
-    animation: gradientMove 15s ease infinite;
     transition: all 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Активный класс для открытия сайдбара на мобильных */
+aside.mobile-open {
+    left: 0;
+}
+
+/* -------------------- Кнопка меню для мобильных -------------------- */
+.mobile-menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+    display: block;
 }
 
 /* -------------------- Логотип -------------------- */
@@ -101,15 +132,14 @@ aside ul li a:hover i {
     transform: scale(1.2);
 }
 
-/* -------------------- Main -------------------- */
+/* -------------------- Main Content -------------------- */
 main {
-    flex: 1;
-
-    margin-left: 250px; /* отступ под ширину сайдбара */
-    padding: 40px;
-    font-size: 20px;
-    line-height: 1.7;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.6;
     color: black;
+    width: 100%;
+    min-height: 100vh;
 }
 
 /* -------------------- Фоновая картинка -------------------- */
@@ -145,4 +175,104 @@ main {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------- Overlay для мобильных -------------------- */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+
+/* -------------------- Планшеты (768px и выше) -------------------- */
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    aside {
+        position: fixed;
+        left: 0;
+        width: var(--sidebar-width);
+    }
+    
+    main {
+        margin-left: var(--sidebar-width);
+        padding: 30px;
+        font-size: 18px;
+    }
+    
+    .page-overlay {
+        padding: 25px;
+    }
+}
+
+/* -------------------- Компьютеры (1024px и выше) -------------------- */
+@media (min-width: 1024px) {
+    main {
+        padding: 40px;
+        font-size: 20px;
+        line-height: 1.7;
+    }
+    
+    .page-overlay {
+        max-width: 1200px;
+        padding: 30px;
+    }
+    
+    aside {
+        width: var(--sidebar-width);
+    }
+    
+    aside ul li a {
+        font-size: 18px;
+        padding: 12px 15px;
+    }
+}
+
+/* -------------------- Большие экраны -------------------- */
+@media (min-width: 1440px) {
+    main {
+        padding: 50px;
+    }
+    
+    .page-overlay {
+        max-width: 1400px;
+        padding: 40px;
+    }
+}
+
+/* -------------------- Очень маленькие устройства -------------------- */
+@media (max-width: 360px) {
+    aside {
+        width: 100%;
+        border-radius: 0;
+    }
+    
+    main {
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    .page-overlay {
+        padding: 15px;
+    }
+    
+    aside .logo-img {
+        max-width: 150px;
+    }
 }
