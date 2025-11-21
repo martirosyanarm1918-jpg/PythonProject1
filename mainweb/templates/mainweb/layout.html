@@ -14,6 +14,11 @@
 </head>
 <body>
 
+    <!-- Кнопка меню для мобильных -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+    
+    <!-- Overlay для закрытия меню -->
+    <div class="mobile-overlay" onclick="toggleSidebar()"></div>
 
     <aside>
         <img src="{% static 'mainweb/img/side_bar_main_logo.png' %}" alt="Логотип" class="logo-img">
@@ -26,7 +31,6 @@
             <li><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Главная</a></li>
             <li><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i>О нас</a></li>
             <li><a href="{% url 'schedule' %}"><i class="fa-solid fa-calendar-days"></i>Расписание</a></li>
-
             <li><a href="{% url 'trainers' %}"><i class="fa-solid fa-trophy"></i>Тренеры</a></li>
             <li><a href="{% url 'reviews' %}"><i class="fa-solid fa-comment-dots"></i>Отзывы</a></li>
             <li><a href="{% url 'appointment' %}"><i class="fa-solid fa-calendar-check"></i>Запись</a></li>
@@ -41,6 +45,15 @@
             {% block content %}{% endblock %}
         </div>
     </main>
+
+    <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('aside');
+        const overlay = document.querySelector('.mobile-overlay');
+        sidebar.classList.toggle('mobile-open');
+        overlay.classList.toggle('active');
+    }
+    </script>
 
 </body>
 </html>
